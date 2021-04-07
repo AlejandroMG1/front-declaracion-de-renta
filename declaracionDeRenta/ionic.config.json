@@ -1,0 +1,7 @@
+{
+  "name": "declaracionDeRenta",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
