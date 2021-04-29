@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
+import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
+import { GlobalService } from 'src/services/global.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -13,6 +17,31 @@ export class AppComponent {
     { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
     { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+  public labels = [];
+  logged = false;
+  socialUser: SocialUser;
+  constructor(private platform: Platform, private authService: SocialAuthService, private globalService: GlobalService,
+    private router: Router) { }
+
+  ngOnInit(): void {
+    this.labels = this.platform.platforms()
+    this.globalService.plaforms.next(this.labels)
+    console.log("imSub");
+    this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID).then(
+      ()=>{
+        console.log("refresh");
+      },
+      (error)=>{
+        this.router.navigate(['welcome'])
+      }
+    );
+    this.subcribeToLocalUser();
+  }
+
+  subcribeToLocalUser = () => {
+    this.globalService.loggedUser.subscribe((user) => {
+      this.socialUser = user;
+      this.logged = (user != null)
+    })
+  }
 }

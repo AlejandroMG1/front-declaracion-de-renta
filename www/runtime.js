@@ -64,7 +64,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"common":"common","folder-folder-module":"folder-folder-module","polyfills-core-js":"polyfills-core-js","polyfills-css-shim":"polyfills-css-shim","polyfills-dom":"polyfills-dom","shadow-css-a3f00b33-js":"shadow-css-a3f00b33-js","swiper-bundle-44a9b1f9-js":"swiper-bundle-44a9b1f9-js","focus-visible-f4ad4f1a-js":"focus-visible-f4ad4f1a-js","input-shims-73f15161-js":"input-shims-73f15161-js","keyboard-5742b5da-js":"keyboard-5742b5da-js","status-tap-bdecfebf-js":"status-tap-bdecfebf-js","swipe-back-ee838cf8-js":"swipe-back-ee838cf8-js","tap-click-cc1ae2b2-js":"tap-click-cc1ae2b2-js"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"common":"common","polyfills-core-js":"polyfills-core-js","polyfills-css-shim":"polyfills-css-shim","polyfills-dom":"polyfills-dom","register-register-module":"register-register-module","shadow-css-a3f00b33-js":"shadow-css-a3f00b33-js","welcome-welcome-module":"welcome-welcome-module","swiper-bundle-44a9b1f9-js":"swiper-bundle-44a9b1f9-js","focus-visible-f4ad4f1a-js":"focus-visible-f4ad4f1a-js","input-shims-73f15161-js":"input-shims-73f15161-js","keyboard-5742b5da-js":"keyboard-5742b5da-js","status-tap-bdecfebf-js":"status-tap-bdecfebf-js","swipe-back-ee838cf8-js":"swipe-back-ee838cf8-js","tap-click-cc1ae2b2-js":"tap-click-cc1ae2b2-js"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function

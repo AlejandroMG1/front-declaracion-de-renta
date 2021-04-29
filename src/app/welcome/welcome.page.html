@@ -1,0 +1,19 @@
+<ion-content [fullscreen]="true">
+    <div style="height: 100%; display: flex;">
+        <div class="ion-text-center" style="margin: auto; position: relative; width: 100%;">
+            <div style="width: 80%; margin: auto;">
+                <ion-label color="primary">Bienvenido a la nueva alternativa para ayudarte a declarar renta sin tantos
+                    enredos</ion-label>
+
+            </div>
+            <ion-button expand="block" fill="clear" shape="round" (click)="signInWithGoogle()">
+                <ion-icon slot="start" name="logo-google"></ion-icon>
+                Ingresa con google
+            </ion-button>
+            <ion-button expand="block" fill="clear" shape="round" (click)="signInWithFacebook()">
+                <ion-icon slot="start" name="logo-facebook"></ion-icon>
+                Ingresa con facebook
+            </ion-button>
+        </div>
+    </div>
+</ion-content>

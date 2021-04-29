@@ -1,0 +1,43 @@
+<ion-content>
+  <div style="height: 100%; margin: auto; display: flex;" *ngIf="socialUser && userForm">
+    <form [formGroup]="userForm" (ngSubmit)="enter()">
+      <ion-row style="margin: auto;"  [ngStyle]="{'width': size == 6 ? '60%':'95%'}">
+      <ion-col [size]="size">
+        <ion-item>
+          <ion-label >Nombre:</ion-label>
+          <ion-input formControlName="firstName" type="text"> </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col [size]="size">
+        <ion-item>
+          <ion-label>Apellidos:</ion-label>
+          <ion-input formControlName="lastName" type="text"> </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Email:</ion-label>
+          <ion-input formControlName="email" type="text" disabled="true"> </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Numero de cedula:</ion-label>
+          <ion-input type="number" formControlName="id"> </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col [size]="size">
+        <ion-button type="submit" expand="block" fill="solid" shape="round" color="success" [disabled]="!userForm.valid">
+          Acceder
+        </ion-button>
+      </ion-col>
+      <ion-col [size]="size">
+        <ion-button expand="block" fill="solid" shape="round" color="danger" (click)="signOut()">
+          cancelar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    </form>
+    
+  </div>
+</ion-content>
