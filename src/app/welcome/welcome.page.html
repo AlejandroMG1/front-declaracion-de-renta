@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true">
+<!-- <ion-content [fullscreen]="true">
     <div style="height: 100%; display: flex;">
         <div class="ion-text-center" style="margin: auto; position: relative; width: 100%;">
             <div style="width: 80%; margin: auto;">
@@ -16,4 +16,35 @@
             </ion-button>
         </div>
     </div>
+</ion-content> -->
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="9">
+                <h1>
+                    Desenredate y lleva el proceso de declaración con nosotros
+                </h1>
+                <ion-row>
+                    <ion-col size="6">
+                        <!-- <ion-button  expand="block" fill="solid" shape="round">
+                            Ingresar
+                        </ion-button> -->
+                        <ion-button expand="block" fill="solid" shape="round" (click)="signInWithGoogle()">
+                            <ion-icon slot="start" name="logo-google"></ion-icon>
+                            Ingresa con google
+                        </ion-button>
+                        <ion-button expand="block" fill="solid" shape="round" (click)="signInWithFacebook()">
+                            <ion-icon slot="start" name="logo-facebook"></ion-icon>
+                            Ingresa con facebook
+                        </ion-button>
+                    </ion-col>
+                    <ion-col size="1">
+
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+            <ion-col size="3"></ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

@@ -10,25 +10,25 @@ import { GlobalService } from 'src/services/global.service';
 })
 export class WelcomePage implements OnInit {
 
-  platforms: string[] = []
+  mobile = false;
 
   constructor(private globalService: GlobalService, private authService: SocialAuthService, private router: Router) { }
 
   ngOnInit() {
-    this.globalService.plaforms.subscribe((plat)=>{
-      this.platforms = plat
-    })
+    this.globalService.mobile.subscribe((plat)=>{
+      this.mobile = plat;
+    });
   }
 
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(()=>{
-      this.router.navigate(['register'])
+      this.router.navigate(['register']);
     });
   }
 
   signInWithFacebook(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(()=>{
-      this.router.navigate(['register'])
+      this.router.navigate(['register']);
     });
   }
 }

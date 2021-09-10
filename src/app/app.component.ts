@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
@@ -8,7 +8,7 @@ import { GlobalService } from 'src/services/global.service';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   public appPages = [
     { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
     { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
@@ -24,15 +24,15 @@ export class AppComponent {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.labels = this.platform.platforms()
-    this.globalService.plaforms.next(this.labels)
-    console.log("imSub");
+    this.labels = this.platform.platforms();
+    this.globalService.mobile.next(this.labels.includes('android') || this.labels.includes('iphone'));
     this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID).then(
       ()=>{
-        console.log("refresh");
+        console.log('refresh');
       },
       (error)=>{
-        this.router.navigate(['welcome'])
+        console.error(error);
+        this.router.navigate(['welcome']);
       }
     );
     this.subcribeToLocalUser();
@@ -41,7 +41,7 @@ export class AppComponent {
   subcribeToLocalUser = () => {
     this.globalService.loggedUser.subscribe((user) => {
       this.socialUser = user;
-      this.logged = (user != null)
-    })
-  }
+      this.logged = (user != null);
+    });
+  };
 }

@@ -1,5 +1,14 @@
+ion-segment-button[disabled]{
+  color: black;
+  opacity: 1;
+}
+
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
+}
+
+ion-toolbar {
+  --ion-toolbar-background-color: transparent;
 }
 
 ion-menu.md ion-content {
