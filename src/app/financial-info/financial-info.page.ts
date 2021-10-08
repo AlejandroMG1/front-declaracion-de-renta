@@ -46,7 +46,7 @@ export class FinancialInfoPage implements OnInit {
 
   async setInfo(): Promise<void> {
     const formValues = this.userForm.value;
-    this.financialInfo = {
+    const newFinancialInfo = {
       bankConsignements: formValues.bank,
       income: formValues.income,
       consuption: formValues.consuption,
@@ -55,8 +55,10 @@ export class FinancialInfoPage implements OnInit {
     };
     try {
       if (this.financialInfo) {
+        this.financialInfo = newFinancialInfo;
         await this.taxService.updateFinancialInfo(this.financialInfo);
       } else {
+        this.financialInfo = newFinancialInfo;
         await this.taxService.createFinancialInfo(this.financialInfo);
       }
       this.router.navigate(['principal']);

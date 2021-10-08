@@ -32,11 +32,12 @@ export class TaxService {
   }
 
   createFinancialInfo(financialInfo: FinancialInfo): Promise<any> {
-    return this.http.post(this.baseurl + 'financialInformation/create/', { financialInfo }, { headers: this.httpHeaders }).toPromise();
+    return this.http.post(this.baseurl + 'financialInformation/create/',  financialInfo , { headers: this.httpHeaders }).toPromise();
   }
 
   updateFinancialInfo(financialInfo: FinancialInfo): Promise<any> {
-    return this.http.post(this.baseurl + 'financialInformation/update/', { financialInfo }, { headers: this.httpHeaders }).toPromise();
+    console.log(financialInfo);
+    return this.http.put(this.baseurl + 'financialInformation/update/',  financialInfo , { headers: this.httpHeaders }).toPromise();
   }
 
 }

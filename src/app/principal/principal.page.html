@@ -14,16 +14,16 @@
             <ion-col size="8">
               Es declarante:
             </ion-col>
-            <ion-col size="4">
-              <ion-toggle [(ngModel)]="needDeclare" disabled="true"></ion-toggle>
+            <ion-col size="4" style="pointer-events: none;">
+              <ion-toggle [(ngModel)]="needDeclare"></ion-toggle>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="8">
               Tu fecha de declaración es:
             </ion-col>
-            <ion-col size="4">
-              <input type="text">
+            <ion-col size="4" *ngIf="needDeclare">
+              {{stamentDate | date:'dd/MM/yyyy'}}
             </ion-col>
           </ion-row>
 

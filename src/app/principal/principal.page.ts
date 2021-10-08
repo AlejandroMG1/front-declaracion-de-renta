@@ -10,9 +10,15 @@ export class PrincipalPage implements OnInit {
 
   needDeclare = false;
 
+  stamentDate: Date;
+
   constructor(private taxService: TaxService) { }
 
   ngOnInit() {
+    this.taxService.statementDate().then((date) => {
+      console.log(date);
+      this.stamentDate = new Date(date.date);
+    });
   }
 
   ionViewWillEnter() {
