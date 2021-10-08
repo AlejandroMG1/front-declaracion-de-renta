@@ -30,18 +30,42 @@
         </ion-col>
       </ion-row>
     </div>
-    <div class="ion-text-center" style="width: 100%; font-weight: bold;">
+    <div class="ion-text-center"
+      style="width: 100%; font-weight: bold;font-size: 1.5rem; background-color: var(--ion-color-secondary);">
       Documentos adjuntos para declarar renta
     </div>
-    <div>
-      <label for="upload" style="display: flex;">
+    <div style="background-color: var(--ion-color-secondary);">
+      <!-- <label for="upload" style="display: flex;">
         <div style="padding: 1rem; width: fit-content;">
           <ion-icon slot="start" name="add" style="font-size: 3rem;"></ion-icon>
         </div>
 
 
       </label>
-      <input id="upload" type="file" accept=".png, .docx, .doc, .jpg, .pdf" style="display: none;">
+      <input id="upload" type="file" accept=".png, .docx, .doc, .jpg, .pdf" style="display: none;"
+        (change)="onFileSelected($event)"> -->
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            Documentos importantes:
+            <ul>RUT</ul>
+            <ul>Obligaciones financieras</ul>
+            <ul>Retencion en la fuente</ul>
+            <ul>Facturas o certificados de gastos</ul>
+            <ul>Carta de dependientes economicos</ul>
+            <label for="upload" style="display: flex;">
+              <div style="padding: 1rem; width: fit-content;">
+                <ion-icon slot="start" name="add" style="font-size: 3rem;"></ion-icon>
+              </div>
+
+
+            </label>
+            <input id="upload" type="file" accept=".png, .docx, .doc, .jpg, .pdf" style="display: none;"
+              (change)="onFileSelected($event)">
+          </ion-col>
+          <ion-col size="6" style="background-color: white;"></ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
 
   </ion-grid>

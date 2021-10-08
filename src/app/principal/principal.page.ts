@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SocialAuthService, SocialUser } from 'angularx-social-login';
+import { DOSpaceService } from 'src/services/dospace.service';
 import { TaxService } from 'src/services/tax.service';
 
 @Component({
@@ -12,11 +14,18 @@ export class PrincipalPage implements OnInit {
 
   stamentDate: Date;
 
-  constructor(private taxService: TaxService) { }
+  fileName = 'prueba';
+
+  user: SocialUser;
+
+  constructor(private taxService: TaxService, private doService: DOSpaceService, private socialAuth: SocialAuthService) {
+    this.socialAuth.authState.subscribe((user) => {
+      this.user = user;
+    });
+  }
 
   ngOnInit() {
     this.taxService.statementDate().then((date) => {
-      console.log(date);
       this.stamentDate = new Date(date.date);
     });
   }
@@ -27,4 +36,8 @@ export class PrincipalPage implements OnInit {
     });
   }
 
+  onFileSelected(event) {
+    const file: File = event.target.files[0];
+    this.doService.uploadFile(file, this.user.provider + this.user.id);
+  }
 }
