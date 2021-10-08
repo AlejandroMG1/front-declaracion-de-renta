@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TaxService } from 'src/services/tax.service';
 
 @Component({
   selector: 'app-principal',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalPage implements OnInit {
 
-  constructor() { }
+  needDeclare = false;
+
+  constructor(private taxService: TaxService) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    this.taxService.needDeclare().then((need) => {
+      this.needDeclare = need;
+    });
   }
 
 }

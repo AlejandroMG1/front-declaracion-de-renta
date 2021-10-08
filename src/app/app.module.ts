@@ -13,13 +13,14 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FinancialInfoPipe } from './financial-info.pipe';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FinancialInfoPipe],
   entryComponents: [],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
+    BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
     SocialLoginModule,
     HttpClientModule,
@@ -47,4 +48,4 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

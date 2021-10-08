@@ -1,0 +1,60 @@
+<ion-content>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="10" size-md="7" offset-md="0" offset="1" class="ion-text-center">
+          <h1>
+            Información financiera
+          </h1>
+          <form [formGroup]="userForm" class="ion-text-left" *ngIf="userForm">
+            <ion-label>
+              valor total de consignaciones bancarias:
+            </ion-label>
+            <ion-item>
+              <ion-input formControlName="bank" type="text"> </ion-input>
+            </ion-item>
+
+            <ion-row>
+              <ion-col size="12" size-md="6">
+                <ion-label>Ingresos brutos:</ion-label>
+                <ion-item>
+                  <ion-input formControlName="income" type="text"> </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="12" size-md="6">
+                <ion-label>Total en consumo mediante tarjeta de credito</ion-label>
+                <ion-item>
+                  <ion-input formControlName="liabilitiesValue" type="text"> </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="12" size-md="6">
+                <ion-label>Total en comparas y consumo:</ion-label>
+                <ion-item>
+                  <ion-input formControlName="consuption" type="text"> </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="12" size-md="6">
+                <ion-label>Valor del patrimonio</ion-label>
+                <ion-item>
+                  <ion-input formControlName="assetsValue" type="text"> </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="6">
+                <ion-button expand="block" fill="solid" shape="round" [routerLink]="['/principal']">
+                  Cancelar
+                </ion-button>
+              </ion-col>
+              <ion-col size="6">
+                <ion-button [disabled]="!userForm.valid" (click)="setInfo()" expand="block" fill="solid" shape="round">
+                  Actualizar
+                </ion-button>
+              </ion-col>
+            </ion-row>
+
+          </form>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+</ion-content>

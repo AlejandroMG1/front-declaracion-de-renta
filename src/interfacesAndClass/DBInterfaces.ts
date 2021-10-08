@@ -10,3 +10,12 @@ export class User {
     phoneNumber?: string;
     role?: string;
 }
+
+export interface FinancialInfo {
+    userId?:            number;
+    income:            number;
+    consuption:        number;
+    bankConsignements: number;
+    assetsValue:       number;
+    liabilitiesValue:  number;
+}

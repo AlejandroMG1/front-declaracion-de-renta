@@ -44,9 +44,7 @@
   <div style="height: 100%; margin: auto; width: 100%;" *ngIf="socialUser && userForm">
     <ion-grid>
       <ion-row>
-        <ion-col [size]="size"
-          [offset]="(size==6) ? 1 : 0"
-          class="ion-text-center">
+        <ion-col size="10" size-md="7" offset-md="0" offset="1" class="ion-text-center">
           <h1>
             Información personal
           </h1>
@@ -57,26 +55,25 @@
             </ion-item>
 
             <ion-row>
-              <ion-col [size]="size">
+              <ion-col size="12" size-md="6">
                 <ion-label>Nombre:</ion-label>
                 <ion-item>
                   <ion-input formControlName="firstName" type="text"> </ion-input>
                 </ion-item>
               </ion-col>
-              <ion-col [size]="size">
+              <ion-col size="12" size-md="6">
                 <ion-label>Apellidos:</ion-label>
                 <ion-item>
                   <ion-input formControlName="lastName" type="text"> </ion-input>
                 </ion-item>
               </ion-col>
-              <ion-col [size]="size">
+              <ion-col size="12" size-md="6">
                 <ion-label>Cedula:</ion-label>
                 <ion-item>
                   <ion-input formControlName="id" type="text"> </ion-input>
                 </ion-item>
-                <ion-input type="text" placeholder=""></ion-input>
               </ion-col>
-              <ion-col [size]="size">
+              <ion-col size="12" size-md="6">
                 <ion-label>Teléfono:</ion-label>
                 <ion-item>
                   <ion-input formControlName="phone" type="text"> </ion-input>
@@ -88,8 +85,8 @@
                 </ion-button>
               </ion-col>
               <ion-col size="6">
-                <ion-button (click)="access()" expand="block" fill="solid" shape="round">
-                  Actualizar
+                <ion-button (click)="access()" [disabled]="!userForm.valid" expand="block" fill="solid" shape="round">
+                  Registrarse
                 </ion-button>
               </ion-col>
             </ion-row>

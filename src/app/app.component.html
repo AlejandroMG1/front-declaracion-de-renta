@@ -6,18 +6,18 @@
       </ion-buttons>
       <ion-grid class="ion-padding-0">
         <ion-row>
-          <ion-col size="9">
-                <ion-segment value="pizza">
-                  <ion-segment-button value="" disabled="true" style="--indicator-height: 1px; --color: black;">
-                    <ion-label>declaración de renta</ion-label>
-                  </ion-segment-button>
-                  <ion-segment-button value="pizza" style="--indicator-height: 0px">
-                    <ion-label>home</ion-label>
-                  </ion-segment-button>
-                  <ion-segment-button value="pasta">
-                    <ion-label>mi información financiera</ion-label>
-                  </ion-segment-button>
-                </ion-segment>
+          <ion-col size="3">
+            declaración de renta
+          </ion-col>
+          <ion-col size="9" class="ion-align-items-start">
+            <ion-segment [value]="activeUrl">
+              <ion-segment-button value="/principal" style="--indicator-height: 0px" *ngIf="authService.logged">
+                <ion-label>home</ion-label>
+              </ion-segment-button>
+              <ion-segment-button value="/financial-info" style="--indicator-height: 0px" *ngIf="authService.logged">
+                <ion-label>mi información financiera</ion-label>
+              </ion-segment-button>
+            </ion-segment>
 
           </ion-col>
         </ion-row>
@@ -26,7 +26,7 @@
     </ion-toolbar>
   </ion-header>
   <ion-content style="display: flex;">
-    <ion-split-pane contentId="main-content" style="width: 90%; margin: auto;">
+    <ion-split-pane contentId="main-content">
       <ion-menu contentId="main-content" type="overlay"
         *ngIf="logged && (labels.includes('android') || labels.includes('iphone'))">
         <ion-content>

@@ -1,27 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Principal</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-grid fixed>
-    <div>
-      <h2>Información financiera</h2>
+  <ion-grid style="padding: 0;">
+    <div style="padding-top: 1rem;">
+      <h2 style="margin-top: 0;">Información financiera</h2>
       <ion-row>
         <ion-col size="6">
           Ingresa o actualiza tus datos financieros para saber si debes declarar renta
-          <ion-button expand="block" fill="solid" shape="round">
-            Ingresar
+          <ion-button expand="block" fill="solid" shape="round" [routerLink]="[ '/financial-info' ]">
+            Actualizar
           </ion-button>
         </ion-col>
         <ion-col size="6">
           <ion-row>
             <ion-col size="8">
-              El monto que debes pagar en concepto de impuestos es:
+              Es declarante:
             </ion-col>
             <ion-col size="4">
-              <input type="text">
+              <ion-toggle [(ngModel)]="needDeclare" disabled="true"></ion-toggle>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -36,8 +30,19 @@
         </ion-col>
       </ion-row>
     </div>
-    <div>
-      Documentos
+    <div class="ion-text-center" style="width: 100%; font-weight: bold;">
+      Documentos adjuntos para declarar renta
     </div>
+    <div>
+      <label for="upload" style="display: flex;">
+        <div style="padding: 1rem; width: fit-content;">
+          <ion-icon slot="start" name="add" style="font-size: 3rem;"></ion-icon>
+        </div>
+
+
+      </label>
+      <input id="upload" type="file" accept=".png, .docx, .doc, .jpg, .pdf" style="display: none;">
+    </div>
+
   </ion-grid>
 </ion-content>
