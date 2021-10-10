@@ -11,10 +11,10 @@
           </ion-col>
           <ion-col size="9" class="ion-align-items-start">
             <ion-segment [value]="activeUrl">
-              <ion-segment-button value="/principal" style="--indicator-height: 0px" *ngIf="authService.logged">
+              <ion-segment-button value="/principal" style="--indicator-height: 0px" *ngIf="authService.logged" [routerLink]="[ '/principal', ]">
                 <ion-label>home</ion-label>
               </ion-segment-button>
-              <ion-segment-button value="/financial-info" style="--indicator-height: 0px" *ngIf="authService.logged">
+              <ion-segment-button value="/financial-info" style="--indicator-height: 0px" *ngIf="authService.logged" [routerLink]="[ '/financial-info', ]">
                 <ion-label>mi información financiera</ion-label>
               </ion-segment-button>
             </ion-segment>

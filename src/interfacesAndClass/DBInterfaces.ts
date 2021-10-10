@@ -19,3 +19,11 @@ export interface FinancialInfo {
     assetsValue:       number;
     liabilitiesValue:  number;
 }
+
+
+export interface Document {
+    id?:     number;
+    userId?: number;
+    name:   string;
+    url:    string;
+}

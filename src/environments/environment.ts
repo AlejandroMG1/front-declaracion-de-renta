@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'https://declaracion-renta-backend.herokuapp.com/'
+  serverUrl: 'https://declaracion-renta-backend.herokuapp.com/',
+  doSecretKey:'z7u4HTXgVKUqAmjO3TzTf+RrL5QfFEVKKHeG3sYvpsw',
+  doAccessKey: '7AUQ35UIMPZBTHK4A6GO',
+  doSpaceUrl: 'https://stament.sfo3.digitaloceanspaces.com/',
 };
 
 /*

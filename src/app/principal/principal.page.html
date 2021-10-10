@@ -23,7 +23,7 @@
               Tu fecha de declaración es:
             </ion-col>
             <ion-col size="4" *ngIf="needDeclare">
-              {{stamentDate | date:'dd/MM/yyyy'}}
+              {{stamentDate | date:'dd/MM/yyyy' : 'UTC'}}
             </ion-col>
           </ion-row>
 
@@ -34,7 +34,7 @@
       style="width: 100%; font-weight: bold;font-size: 1.5rem; background-color: var(--ion-color-secondary);">
       Documentos adjuntos para declarar renta
     </div>
-    <div style="background-color: var(--ion-color-secondary);">
+    <div style="background-color: var(--ion-color-secondary); display: block;">
       <!-- <label for="upload" style="display: flex;">
         <div style="padding: 1rem; width: fit-content;">
           <ion-icon slot="start" name="add" style="font-size: 3rem;"></ion-icon>
@@ -53,17 +53,36 @@
             <ul>Retencion en la fuente</ul>
             <ul>Facturas o certificados de gastos</ul>
             <ul>Carta de dependientes economicos</ul>
-            <label for="upload" style="display: flex;">
-              <div style="padding: 1rem; width: fit-content;">
-                <ion-icon slot="start" name="add" style="font-size: 3rem;"></ion-icon>
-              </div>
+            <ion-grid fixed>
+              <ion-row>
+                <ion-col size="10">
+                  <ion-item>
+                    <ion-label>nombre</ion-label>
+                    <ion-input type="text" [(ngModel)]="fileName"></ion-input>
+                    <label for="upload">
+                        <ion-icon slot="start" name="document" style="font-size: 2rem; margin: auto;"></ion-icon>
+                    </label>
+                    <input id="upload" type="file" accept=".png, .docx, .doc, .jpg, .pdf" style="display: none;"
+                      (change)="onFileSelected($event)">
+                  </ion-item>
+                </ion-col>
+                <ion-col size="2">
+                  <ion-button expand="block" fill="solid" shape="round" *ngIf="file" (click)="uploadFile()">
+                    subir
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
 
-
-            </label>
-            <input id="upload" type="file" accept=".png, .docx, .doc, .jpg, .pdf" style="display: none;"
-              (change)="onFileSelected($event)">
           </ion-col>
-          <ion-col size="6" style="background-color: white;"></ion-col>
+          <ion-col size="6" style="background-color: white;">
+            <div style="height: 50vh; display: block; overflow: scroll;">
+              <ion-item *ngFor="let doc of documentsService.userDocs" [href]="doc.url" target="_blank" rel="noopener noreferrer" >
+                <ion-label>{{doc.name}}</ion-label>
+                <ion-icon slot="end" name="close" (click)="$event.stopPropagation(); $event.preventDefault(); deleteDoc(doc)"></ion-icon>
+              </ion-item>
+            </div>
+          </ion-col>
         </ion-row>
       </ion-grid>
     </div>

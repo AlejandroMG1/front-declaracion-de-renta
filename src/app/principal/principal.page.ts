@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
+import { Document } from 'src/interfacesAndClass/DBInterfaces';
+import { DocumentsService } from 'src/services/documents.service';
 import { DOSpaceService } from 'src/services/dospace.service';
 import { TaxService } from 'src/services/tax.service';
 
@@ -14,11 +16,16 @@ export class PrincipalPage implements OnInit {
 
   stamentDate: Date;
 
-  fileName = 'prueba';
+  fileName = '';
+
+  file: File;
+
+  userDocuments: Document[] = [];
 
   user: SocialUser;
 
-  constructor(private taxService: TaxService, private doService: DOSpaceService, private socialAuth: SocialAuthService) {
+  constructor(private taxService: TaxService, private doService: DOSpaceService, private socialAuth: SocialAuthService,
+    public documentsService: DocumentsService) {
     this.socialAuth.authState.subscribe((user) => {
       this.user = user;
     });
@@ -28,6 +35,7 @@ export class PrincipalPage implements OnInit {
     this.taxService.statementDate().then((date) => {
       this.stamentDate = new Date(date.date);
     });
+    this.documentsService.getFiles();
   }
 
   ionViewWillEnter() {
@@ -36,8 +44,29 @@ export class PrincipalPage implements OnInit {
     });
   }
 
+  async uploadFile() {
+    const extIndex = this.findExtension(this.file.name);
+    const ext = (this.file.name.substring(extIndex, this.file.name.length));
+    await this.doService.uploadFile(this.file, this.user.provider + this.user.id, this.fileName + ext);
+    this.file = null;
+    this.fileName = '';
+  }
+
   onFileSelected(event) {
-    const file: File = event.target.files[0];
-    this.doService.uploadFile(file, this.user.provider + this.user.id);
+    this.file = event.target.files[0];
+  }
+
+  deleteDoc(doc: Document) {
+    this.doService.deleteFile(doc);
+  }
+
+  private findExtension(name: string) {
+    let currentIndex = 0;
+    for (let i = 0; i < name.length; i++) {
+      if (name[i] === '.') {
+        currentIndex = i;
+      }
+    }
+    return currentIndex;
   }
 }

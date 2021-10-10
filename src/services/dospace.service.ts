@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import * as AWS from 'aws-sdk/global';
 import * as S3 from 'aws-sdk/clients/s3';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { DocumentsService } from './documents.service';
+import { Document } from 'src/interfacesAndClass/DBInterfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -9,33 +12,35 @@ import { Observable, of } from 'rxjs';
 export class DOSpaceService {
 
   bucket: S3;
-  bucketName= 'stament';
+  bucketName = 'stament';
 
-  constructor() {
+  constructor(private docService: DocumentsService) {
     this.bucket = new S3(
       {
         endpoint: 'sfo3.digitaloceanspaces.com',
-        accessKeyId: '7AUQ35UIMPZBTHK4A6GO',
-        secretAccessKey: 'z7u4HTXgVKUqAmjO3TzTf+RrL5QfFEVKKHeG3sYvpsw',
+        accessKeyId: environment.doAccessKey,
+        secretAccessKey: environment.doSecretKey,
       }
     );
   }
 
-  uploadFile(file, id) {
+  async uploadFile(file, id: string, name: string) {
     const contentType = file.type;
+    const key = id + '/' + name;
     const params = {
       Bucket: this.bucketName,
-      Key: id + '/' +new Date().toISOString()+ file.name,
+      Key: key,
       Body: file,
       ACL: 'public-read',
       ContentType: contentType
     };
-    this.bucket.upload(params, (err, data) => {
+    await this.bucket.upload(params, async (err, data) => {
       if (err) {
-        console.log('There was an error uploading your file: ', err);
         return false;
       }
-      console.log('Successfully uploaded file.', data);
+      const doc: Document = { name, url: environment.doSpaceUrl + key };
+      await this.docService.postFile(doc);
+      this.docService.getFiles();
       return true;
     });
 
@@ -52,4 +57,18 @@ export class DOSpaceService {
           });*/
   }
 
+  deleteFile(doc: Document) {
+    const key = doc.url.substring(environment.doSpaceUrl.length);
+    const params = {
+      Bucket: this.bucketName,
+      Key: key,
+    };
+    this.bucket.deleteObject(params, (err, data) => {
+      if (err) {
+        console.error(err);
+      } else {
+        this.docService.deleteFile(doc.id);
+      }
+    });
+  }
 }
