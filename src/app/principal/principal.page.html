@@ -1,6 +1,6 @@
 <ion-content>
   <ion-grid style="padding: 0;">
-    <div style="padding-top: 1rem;">
+    <div style="padding-top: 1rem; padding-left: 1rem; padding-right: 1rem;">
       <h2 style="margin-top: 0;">Información financiera</h2>
       <ion-row>
         <ion-col size="6">
@@ -9,7 +9,7 @@
             Actualizar
           </ion-button>
         </ion-col>
-        <ion-col size="6">
+        <ion-col size="6" style="font-weight: bold;">
           <ion-row>
             <ion-col size="8">
               Es declarante:
@@ -19,19 +19,25 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="8">
+            <ion-col size="8" >
               Tu fecha de declaración es:
             </ion-col>
-            <ion-col size="4" *ngIf="needDeclare">
-              {{stamentDate | date:'dd/MM/yyyy' : 'UTC'}}
+            <ion-col size="4" *ngIf="needDeclare; else na">
+              {{stamentDate | date:'dd/MM/yyyy'}}
             </ion-col>
+            <ng-template #na>
+              <ion-col size="4">
+                N/A
+              </ion-col>
+            </ng-template>
+            
           </ion-row>
 
         </ion-col>
       </ion-row>
     </div>
     <div class="ion-text-center"
-      style="width: 100%; font-weight: bold;font-size: 1.5rem; background-color: var(--ion-color-secondary);">
+      style="width: 100%; font-weight: bold;font-size: 1.5rem; background-color: var(--ion-color-secondary); padding: 1rem;">
       Documentos adjuntos para declarar renta
     </div>
     <div style="background-color: var(--ion-color-secondary); display: block;">

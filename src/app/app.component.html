@@ -1,4 +1,4 @@
-<ion-app>
+<ion-app class="background">
   <ion-header [translucent]="true" class="ion-no-border">
     <ion-toolbar translucent class="ion-no-border">
       <ion-buttons slot="start">
@@ -7,14 +7,20 @@
       <ion-grid class="ion-padding-0">
         <ion-row>
           <ion-col size="3">
-            declaración de renta
+            <div style="display: flex; height: 100%;">
+              <div style="margin-top: auto; margin-bottom: auto; font-size: 1.5rem; font-weight: bold;">
+                declaración de renta
+              </div>
+            </div>
           </ion-col>
           <ion-col size="9" class="ion-align-items-start">
             <ion-segment [value]="activeUrl">
-              <ion-segment-button value="/principal" style="--indicator-height: 0px" *ngIf="authService.logged" [routerLink]="[ '/principal', ]">
+              <ion-segment-button value="/principal" style="--indicator-height: 0px" *ngIf="authService.logged"
+                [routerLink]="[ '/principal', ]">
                 <ion-label>home</ion-label>
               </ion-segment-button>
-              <ion-segment-button value="/financial-info" style="--indicator-height: 0px" *ngIf="authService.logged" [routerLink]="[ '/financial-info', ]">
+              <ion-segment-button value="/financial-info" style="--indicator-height: 0px" *ngIf="authService.logged"
+                [routerLink]="[ '/financial-info', ]">
                 <ion-label>mi información financiera</ion-label>
               </ion-segment-button>
             </ion-segment>
